@@ -113,7 +113,16 @@ npm run test:live
 | `overlays.js` | Bushfire/landslide queries, combined counts and traffic-light rules |
 | `popup.html`, `popup.css`, `popup.js` | Manual toolbar lookup |
 
-The bundled `about.html` exposes the privacy and data notices inside the extension. After editing `PRIVACY.md`, `ATTRIBUTION.md` or `LICENSE`, regenerate it with `python3 scripts/build-notices.py`. Only this static notices page is exposed as a web-accessible resource to the five supported sites.
+The bundled `about.html` exposes the privacy and data notices inside the extension. After editing `PRIVACY.md`, `ATTRIBUTION.md` or `LICENSE`, run `python3 scripts/build-notices.py` to regenerate it and the public privacy page at `docs/index.html`. Only `about.html` is exposed as an extension web-accessible resource to the five supported sites.
+
+### Hosting the privacy policy on GitHub Pages
+
+1. Commit and push `docs/index.html`, `docs/.nojekyll` and the updated notice generator to GitHub.
+2. Open the repository’s **Settings → Pages**.
+3. Under **Build and deployment**, choose **Deploy from a branch**, then **main** and **/docs**. Click **Save**.
+4. Wait for the deployment to finish, then open the URL GitHub displays and confirm the policy is visible.
+
+With the current repository name and GitHub’s default domain, the policy URL will be `https://hharnett.github.io/brisbane-real-estate-overlays/`. Use it in store privacy-policy fields only after the page is live. No custom domain is needed. Keep `PRIVACY.md` as the source of truth and regenerate and publish the HTML whenever the policy changes.
 
 Validation as of 27 October 2026:
 

@@ -1,4 +1,4 @@
-"""Build the bundled notices page from the repository documents; no dependencies."""
+"""Build bundled notices and the GitHub Pages privacy policy; no dependencies."""
 from pathlib import Path
 from html import escape
 import re
@@ -41,3 +41,28 @@ for title, filename in [('Privacy', 'PRIVACY.md'), ('Data attribution & sources'
     page += '<details open><summary>' + title + '</summary>' + render(filename) + '</details>'
 page += '<details><summary>Software licence — MIT</summary><pre>' + escape((ROOT / 'LICENSE').read_text()) + '</pre></details></main></body></html>\n'
 (ROOT / 'about.html').write_text(page)
+
+# Publish this folder through GitHub Pages (main /docs). PRIVACY.md remains the
+# source of truth for both the extension's notices and the public policy.
+privacy = '''<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Privacy policy for the Brisbane Real Estate Overlay browser extension.">
+<title>Privacy policy — Brisbane Real Estate Overlay</title>
+<style>
+*{box-sizing:border-box}body{margin:0;background:#edf7ff;color:#173c58;font:16px/1.7 "Helvetica Neue",Helvetica,Arial,sans-serif}
+main{max-width:800px;margin:40px auto;padding:36px;background:white;border:1px solid #cce1f1;border-radius:16px}
+h1{font-size:28px;line-height:1.2}h2{font-size:24px}h3{font-size:19px;margin-top:28px}a{color:#1c6294;overflow-wrap:anywhere}
+code{font-size:.9em;overflow-wrap:anywhere}header p,footer{color:#52738b}footer{border-top:1px solid #cce1f1;margin-top:32px;padding-top:20px;font-size:14px}
+a:focus-visible{outline:3px solid #78b9e6;outline-offset:3px}@media(max-width:600px){main{margin:0;padding:24px;border:0;border-radius:0}}
+</style></head><body><main><header><h1>Brisbane Real Estate Overlay</h1><p>Privacy policy · Independent browser extension</p></header>
+'''
+privacy += render('PRIVACY.md')
+privacy += '''<footer><p>Maintained by <a href="https://github.com/hharnett">hharnett</a>.</p>
+<p><a href="https://github.com/hharnett/brisbane-real-estate-overlays">Project and source code</a> · <a href="https://github.com/hharnett/brisbane-real-estate-overlays/issues">Privacy questions and issues</a></p>
+<p>This page has no analytics or third-party scripts. It is hosted by GitHub Pages; GitHub processes visitor request information under its <a href="https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement">privacy statement</a>.</p>
+</footer></main></body></html>
+'''
+docs = ROOT / 'docs'
+docs.mkdir(exist_ok=True)
+(docs / 'index.html').write_text(privacy)
+(docs / '.nojekyll').touch()
