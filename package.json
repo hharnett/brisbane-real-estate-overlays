@@ -1,0 +1,17 @@
+{
+  "name": "brisbane-real-estate-overlay",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "node --test",
+    "test:live": "node scripts/live-check.js"
+  },
+  "license": "MIT",
+  "engines": {
+    "node": ">=22"
+  },
+  "author": {
+    "name": "hharnett",
+    "url": "https://github.com/hharnett"
+  }
+}

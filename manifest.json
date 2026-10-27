@@ -1,0 +1,69 @@
+{
+  "manifest_version": 3,
+  "name": "Brisbane Real Estate Overlay",
+  "version": "0.6.0",
+  "description": "Brisbane flood, bushfire and landslide checks alongside property listings, with manual City Plan flood-overlay lookup.",
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "Brisbane Real Estate Overlay",
+    "default_icon": {
+      "16": "icons/brisbane-river-16.png",
+      "32": "icons/brisbane-river-32.png"
+    }
+  },
+  "host_permissions": [
+    "https://services2.arcgis.com/*"
+  ],
+  "background": {
+    "service_worker": "background.js",
+    "type": "module"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "https://www.realestate.com.au/*",
+        "https://realestate.com.au/*",
+        "https://www.domain.com.au/*",
+        "https://domain.com.au/*",
+        "https://www.quietlistings.com.au/*",
+        "https://quietlistings.com.au/*",
+        "https://www.homely.com.au/*",
+        "https://homely.com.au/*",
+        "https://www.onthehouse.com.au/*",
+        "https://onthehouse.com.au/*"
+      ],
+      "js": [
+        "listing-sites.js",
+        "listing-address.js",
+        "content.js"
+      ],
+      "run_at": "document_idle"
+    }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": [
+        "about.html"
+      ],
+      "matches": [
+        "https://www.realestate.com.au/*",
+        "https://realestate.com.au/*",
+        "https://www.domain.com.au/*",
+        "https://domain.com.au/*",
+        "https://www.quietlistings.com.au/*",
+        "https://quietlistings.com.au/*",
+        "https://www.homely.com.au/*",
+        "https://homely.com.au/*",
+        "https://www.onthehouse.com.au/*",
+        "https://onthehouse.com.au/*"
+      ]
+    }
+  ],
+  "author": "hharnett",
+  "icons": {
+    "16": "icons/brisbane-river-16.png",
+    "32": "icons/brisbane-river-32.png",
+    "48": "icons/brisbane-river-48.png",
+    "128": "icons/brisbane-river-128.png"
+  }
+}

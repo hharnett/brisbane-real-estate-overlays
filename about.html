@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Privacy & data notices — Brisbane Real Estate Overlay</title>
+<style>body{font:15px/1.65 "Helvetica Neue",Helvetica,Arial,sans-serif;color:#173c58;background:#edf7ff;margin:0}main{max-width:850px;margin:40px auto;padding:30px;background:#fff;border:1px solid #cce1f1;border-radius:14px}h1{font-size:25px}h2{font-size:21px}h3{font-size:17px;margin-top:26px}a{color:#1c6294;overflow-wrap:anywhere}pre{white-space:pre-wrap;font-size:12px}details{border-top:1px solid #cce1f1;padding:18px 0}summary{cursor:pointer;font-weight:700}blockquote{margin:16px 0;border-left:3px solid #a9cfe9;padding-left:16px}@media(max-width:600px){main{margin:0;border:0;padding:20px}}</style>
+</head><body><main><h1>Brisbane Real Estate Overlay</h1><p>Independent extension · Privacy, data attribution and code licence</p>
+<details open><summary>Privacy</summary><h2>Privacy</h2>
+<p>Effective date: 28 October 2026. Applies to Brisbane Real Estate Overlay version 0.6.0.</p>
+<h3>What the extension reads</h3>
+<p>On realestate.com.au, domain.com.au, quietlistings.com.au, homely.com.au and onthehouse.com.au, the extension checks the page URL to identify individual listings and OnTheHouse property pages. It reads page headings and JSON-LD structured address metadata to find a Queensland address. It also processes addresses you manually enter and the Council property you select.</p>
+<p>The content scripts are registered across these five sites so they can respond to navigation between pages. Flood lookups run only for supported individual listing/property URLs or when you use the toolbar popup. The extension does not read unrelated sites.</p>
+<h3>What leaves your browser</h3>
+<p>Requests are sent directly to public Brisbane City Council services hosted by Esri at <code>https://services2.arcgis.com</code>:</p>
+<p>Search parameters derived from the detected or entered street number, street name, suburb and postcode.</p>
+<p>The selected Council property identifier.</p>
+<p>Property-boundary geometry returned by Council, submitted back to its services for flood, bushfire and landslide spatial intersection checks.</p>
+<p>As with normal web requests, the service operator receives your IP address and request metadata. Its own logging and retention practices apply. The extension does not control them.</p>
+<p>The extension does not send the listing URL, price, photographs, full page content or browser history as lookup parameters. There is no developer-operated server or telemetry endpoint. Following an external Council, licence or source link opens that destination in your browser and is subject to that website’s practices.</p>
+<h3>Storage and sharing</h3>
+<p>The extension does not write search history or results to persistent storage, cookies or a database. Addresses, responses and UI state are held temporarily in page or service-worker memory. There are no analytics, advertisements, tracking identifiers, accounts or data sales. These statements concern the extension itself, not the listing websites or Council/Esri services.</p>
+<h3>Permissions</h3>
+<p><strong>Content scripts on realestate.com.au, domain.com.au, quietlistings.com.au, homely.com.au and onthehouse.com.au:</strong> detect listing addresses and display the card.</p>
+<p><strong>Host access to services2.arcgis.com:</strong> query Council’s property and flood services from the extension.</p>
+<p>The extension does not request access to all websites, browsing history, cookies, location, clipboard or persistent storage. All JavaScript is shipped with the extension; no remotely hosted executable code is loaded.</p>
+<h3>Control</h3>
+<p>You can minimise or dismiss the listing card. To prevent automatic lookups, restrict the extension’s site access in the browser’s extension settings, disable it or remove it. No extension search-history deletion is needed because none is persistently stored.</p>
+<p>For privacy questions, use the repository’s issue tracker if enabled. Avoid posting personal or sensitive information in a public issue. This statement should be updated before any future change introduces caching, telemetry or a backend.</p></details><details open><summary>Data attribution & sources</summary><h2>Data attribution and notices</h2>
+<p>The software’s MIT licence does not cover third-party datasets or trademarks. All ten queried datasets below publish a <strong>Creative Commons Attribution 4.0</strong> licence in their ArcGIS item metadata, verified on 27 October 2026.</p>
+<p><a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener noreferrer">CC BY 4.0 licence</a> · <a href="https://creativecommons.org/licenses/by/4.0/legalcode.en" target="_blank" rel="noopener noreferrer">Legal code</a> · <a href="https://data.brisbane.qld.gov.au/terms/terms-and-conditions.pdf" target="_blank" rel="noopener noreferrer">Council open-data terms</a></p>
+<h3>Sources and copyright</h3>
+<p>Copyright years below reproduce the source layer notices; they are not the data’s last-update date.</p>
+<p>Dataset / source — Published copyright notice</p>
+<p><a href="https://services2.arcgis.com/dEKgZETqwmDAh1rP/ArcGIS/rest/services/property_boundaries_holding/FeatureServer/0" target="_blank" rel="noopener noreferrer">Property holdings</a> — © Brisbane City Council 2026; © State of Queensland (Department of Resources) 2026.</p>
+<p><a href="https://services2.arcgis.com/dEKgZETqwmDAh1rP/ArcGIS/rest/services/Flood_overlay_Brisbane_River_flood_planning_area/FeatureServer/0" target="_blank" rel="noopener noreferrer">City Plan — Brisbane River</a> — © Brisbane City Council 2021</p>
+<p><a href="https://services2.arcgis.com/dEKgZETqwmDAh1rP/ArcGIS/rest/services/Flood_overlay_Creek_waterway_flood_planning_area/FeatureServer/0" target="_blank" rel="noopener noreferrer">City Plan — Creek/waterway</a> — © Brisbane City Council 2023</p>
+<p><a href="https://services2.arcgis.com/dEKgZETqwmDAh1rP/ArcGIS/rest/services/Flood_overlay_Overland_flow/FeatureServer/0" target="_blank" rel="noopener noreferrer">City Plan — Overland flow</a> — © Brisbane City Council 2014</p>
+<p><a href="https://services2.arcgis.com/dEKgZETqwmDAh1rP/ArcGIS/rest/services/Flood_Awareness_River/FeatureServer/0" target="_blank" rel="noopener noreferrer">Flood Awareness — River</a> — © Brisbane City Council 2021</p>
+<p><a href="https://services2.arcgis.com/dEKgZETqwmDAh1rP/ArcGIS/rest/services/Flood_Awareness_Creek/FeatureServer/0" target="_blank" rel="noopener noreferrer">Flood Awareness — Creek</a> — © Brisbane City Council 2021</p>
+<p><a href="https://services2.arcgis.com/dEKgZETqwmDAh1rP/ArcGIS/rest/services/Flood_Awareness_Storm_Tide/FeatureServer/0" target="_blank" rel="noopener noreferrer">Flood Awareness — Storm tide</a> — © Brisbane City Council 2021</p>
+<p><a href="https://services2.arcgis.com/dEKgZETqwmDAh1rP/ArcGIS/rest/services/Flood_Awareness_Overland_Flow/FeatureServer/0" target="_blank" rel="noopener noreferrer">Flood Awareness — Overland flow</a> — © Brisbane City Council 2021</p>
+<p><a href="https://services2.arcgis.com/dEKgZETqwmDAh1rP/ArcGIS/rest/services/Bushfire_overlay/FeatureServer/0" target="_blank" rel="noopener noreferrer">City Plan — Bushfire</a> — © Brisbane City Council 2018; © State of Queensland (Queensland Fire and Emergency Services) 2018</p>
+<p><a href="https://services2.arcgis.com/dEKgZETqwmDAh1rP/ArcGIS/rest/services/Landslide_overlay/FeatureServer/0" target="_blank" rel="noopener noreferrer">City Plan — Landslide</a> — © Brisbane City Council 2014</p>
+<h3>Processing performed by this extension</h3>
+<p>The extension normalises addresses, matches a Council property holding, and requests intersections between its full boundary and Council flood, bushfire and landslide polygons. It summarises the returned categories, selects the highest mapped category per flood source and applies its own traffic-light rule across all six checked types: river, creek, storm tide, overland flow, bushfire and landslide. Bushfire and landslide categories are shown as published, including buffer descriptions. These are derived summaries, not official Council property reports. Source geometry is queried as published, with ArcGIS returning property geometry in EPSG:28356 for the intersection requests. No bulk dataset is bundled or persistently stored.</p>
+<p>The traffic-light rule is an extension feature: green means no mapped types after all six successful checks; yellow means exactly one mapped type; red means two or more mapped types; grey means any check is incomplete. Each type counts once regardless of polygons or subcategories. Colours indicate counts, not hazard severity or a Council risk classification. A single High category is yellow and retains its published category in the details. Multiple types do not change the Council likelihood category. No overlays found does not mean a property is safe or free from hazards.</p>
+<h3>Source limitations</h3>
+<p>The City Plan source items include the following notice:</p>
+<blockquote>No access or use limitations. Discrepancies may occur when changes to these boundaries do not coincide with changes to cadastral information. Further discrepancies may occur as a result of the time delay between Development Approvals and subsequent amendments to mapping information.</blockquote>
+<p>Property holdings are graphical representations; the source description identifies survey plans and related titling/administrative records as the authority for legal property boundaries and related attributes. A holding can contain multiple parcels.</p>
+<p>Council provides its services and data without guarantees of accuracy, completeness, currency, suitability or uninterrupted availability. See the linked source metadata and Council terms. CC BY 4.0 also includes a disclaimer of warranties and limitation of liability. A result showing no mapped intersection is not a guarantee against flooding.</p>
+<p>The extension provides general information only. Source mapping, address matching and the extension’s processing may contain errors or omissions, and results may be inaccurate, incomplete or out of date. No overlay found does not mean a property is safe or free from hazards. Confirm the displayed property and verify with Council’s maps and relevant property reports before making buying, renting, insurance or development decisions. Discuss any property implications with your solicitor or conveyancer. Do not rely on this extension alone; seek other qualified advice where needed. The checked timestamp records the lookup time, not the source mapping’s last-update date.</p>
+<p>This independent extension is not affiliated with or endorsed by Brisbane City Council, the Queensland Government, Esri, realestate.com.au, Domain, Quiet Listings, Homely or OnTheHouse. Their names identify sources and compatibility only; no rights to their logos or trademarks are granted.</p>
+<h3>Redistributing data or derived results</h3>
+<p>Retain the relevant copyright, licence and disclaimer notices, link to the sources and CC BY 4.0, and identify modifications or derived processing. Do not imply endorsement or apply restrictions to the licensed data that conflict with CC BY 4.0. The code’s MIT licence is separate. Check the source’s current notices when updating or adding datasets.</p></details><details><summary>Software licence — MIT</summary><pre>MIT License
+
+Copyright (c) 2026 Brisbane Real Estate Overlay contributors
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the &quot;Software&quot;), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+</pre></details></main></body></html>
