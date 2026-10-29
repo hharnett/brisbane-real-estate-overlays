@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "Brisbane Real Estate Overlay",
-  "version": "0.6.0",
+  "version": "0.8.2",
   "description": "Brisbane flood, bushfire and landslide checks alongside property listings, with manual City Plan flood-overlay lookup.",
   "action": {
     "default_popup": "popup.html",
@@ -35,6 +35,11 @@
       "js": [
         "listing-sites.js",
         "listing-address.js",
+        "map-preview.js",
+        "map-domain.js",
+        "map-quietlistings.js",
+        "map-homely.js",
+        "map-onthehouse.js",
         "content.js"
       ],
       "run_at": "document_idle"

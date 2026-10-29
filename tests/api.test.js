@@ -1,6 +1,6 @@
 import {test} from 'node:test';
 import assert from 'node:assert/strict';
-import {searchWhere, exactPropertyMatch, checkProperty, overallStatus, query} from '../api.js';
+import {searchWhere, exactPropertyMatch, exactMapPropertyMatch, checkProperty, overallStatus, query} from '../api.js';
 test('address search handles units, street types, suburbs and SQL quotes', () => {
  const where = searchWhere("2/100 O'Connell Street West End QLD 4101");
  assert.match(where, /HOUSE_NUMBER = 100/);
@@ -46,4 +46,29 @@ test('listing punctuation is normalized for both searching and exact matching', 
  const property = { HOUSE_NUMBER: 9, CORRIDOR_NAME: 'ORANIA', CORRIDOR_SUFFIX_CODE: 'CRES', SUBURB: 'CALAMVALE', POSTCODE: 4116 };
  assert.equal(exactPropertyMatch(input, [property]), property);
  assert.equal(exactPropertyMatch(input, [{ ...property, HOUSE_NUMBER: 19 }]), null);
+});
+
+const mapProperty = { OBJECTID: 123, HOUSE_NUMBER: 15, CORRIDOR_NAME: 'BAYVIEW', CORRIDOR_SUFFIX_CODE: 'RD', SUBURB: 'BRIGHTON', POSTCODE: 4017 };
+test('map matching accepts an exact street and suburb with an optional postcode', () => {
+ for (const input of ['15 Bayview Road, Brighton', '15 Bayview Rd., Brighton QLD 4017', '15 Bayview Road, Brighton, Queensland 4017']) {
+  assert.equal(exactMapPropertyMatch(input, [mapProperty]), mapProperty, input);
+ }
+ assert.equal(exactPropertyMatch('15 Bayview Road, Brighton', [mapProperty]), null);
+ assert.equal(exactMapPropertyMatch('15A Bayview Road, Brighton', [{ ...mapProperty, HOUSE_NUMBER_SUFFIX: 'A' }])?.HOUSE_NUMBER_SUFFIX, 'A');
+});
+test('map matching leaves incomplete, withheld, unit, range and wrong-suburb addresses unselected', () => {
+ for (const input of [
+  '15 Bayview Road Brighton', '15 Bayview Road', 'Bayview Road, Brighton',
+  '15 Bayview, Brighton', '15 Bayview Road, Bright', '15 Bayview Road, Sandgate',
+  '15 Bayview Road, Brighton QLD 4000', '15 Bayview Road, Brighton NSW 4017',
+  'Address available on request, Brighton', '2/15 Bayview Road, Brighton',
+  'Unit 2, 15 Bayview Road, Brighton', '15-17 Bayview Road, Brighton',
+  '15 & 17 Bayview Road, Brighton', '15 Bayview Road, ', null
+ ]) assert.equal(exactMapPropertyMatch(input, [mapProperty]), null, input);
+ assert.equal(exactMapPropertyMatch('15 Bayview Road, Brighton', [{ ...mapProperty, UNIT_NUMBER: '2' }]), null);
+});
+test('map matching requires exactly one Council candidate', () => {
+ assert.equal(exactMapPropertyMatch('15 Bayview Road, Brighton', []), null);
+ assert.equal(exactMapPropertyMatch('15 Bayview Road, Brighton', [mapProperty, { ...mapProperty, OBJECTID: 456 }]), null);
+ assert.equal(exactMapPropertyMatch('15 Bayview Road, Brighton', [mapProperty, { ...mapProperty, SUBURB: 'SANDGATE' }]), mapProperty);
 });

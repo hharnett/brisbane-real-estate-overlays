@@ -69,3 +69,28 @@ export function exactPropertyMatch(input, properties) {
   const matches = properties.filter(a => !a.UNIT_NUMBER && normalize(addressLabel(a)) === normalize(input));
   return matches.length === 1 ? matches[0] : null;
 }
+
+// Map previews can omit the postcode, but must still identify one complete
+// street address and suburb. Keep this separate from full listing matching.
+export function exactMapPropertyMatch(input, properties) {
+  if (typeof input !== 'string' || /\//.test(input) || /^\s*UNIT\b/i.test(input)) return null;
+  const parts = input.split(',').map(part => part.trim());
+  if (parts.length < 2 || parts.some(part => !part)) return null;
+  const normalizeStreet = text => normalizeAddress(text).split(/\s+/).map(token => types[token] || token).join(' ');
+  const street = normalizeStreet(parts.shift());
+  if (!/^\d+[A-Z]?\s+/.test(street)) return null;
+  const locality = normalizeAddress(parts.join(' ')).split(/\s+/).filter(token => !['QLD', 'QUEENSLAND', 'AUSTRALIA'].includes(token)).join(' ');
+  const postcode = locality.match(/\s+(\d{4})$/)?.[1];
+  const suburb = postcode ? locality.slice(0, -postcode.length).trim() : locality;
+  if (!suburb || /\d/.test(suburb)) return null;
+  const matches = properties.filter(property => {
+    if (property.UNIT_NUMBER) return false;
+    const propertyStreet = [
+      `${property.HOUSE_NUMBER ?? ''}${property.HOUSE_NUMBER_SUFFIX || ''}`,
+      property.CORRIDOR_NAME, property.CORRIDOR_SUFFIX_CODE
+    ].filter(Boolean).join(' ');
+    return normalizeStreet(propertyStreet) === street && normalizeAddress(property.SUBURB || '') === suburb &&
+      (!postcode || String(property.POSTCODE) === postcode);
+  });
+  return matches.length === 1 ? matches[0] : null;
+}

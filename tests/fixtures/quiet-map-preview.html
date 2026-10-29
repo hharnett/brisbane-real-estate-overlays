@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Quiet Listings map preview fixture</title>
+<!-- Sanitized from the selected Quiet Listings map pin inspected on 29 October 2026.
+     Preserve the map/dialog/link/address structure; use fictional listing data.
+     No third-party scripts, images, tracking parameters, or saved page data. -->
+<style>
+  body { margin: 0; color: #243746; font: 14px/1.4 system-ui, sans-serif; }
+  #search-results-map-canvas { min-height: 420px; padding: 48px; background: #e8ede5; }
+  .gm-style-iw { width: 350px; background: white; border-radius: 8px; box-shadow: 0 3px 14px #0003; overflow: hidden; }
+  .gm-style-iw-chr { display: flex; align-items: center; justify-content: space-between; padding: 12px; }
+  .property-results-map__header-address { font-weight: 600; font-size: 12px; }
+  .gm-style-iw-d { overflow: auto; }
+  .property-results-map__info-window { display: flex; gap: 12px; padding: 0 12px 12px; color: inherit; text-decoration: none; }
+  .property-results-map__media { width: 125px; height: 125px; flex-shrink: 0; background: #c8d5d7; border-radius: 8px; display: grid; place-items: center; }
+  .property-results-map__content { flex: 1; padding-top: 4px; }
+  .property-results-map__price { font-weight: 600; color: #285bc7; }
+  .property-results-map__badges { display: flex; gap: 8px; margin: 18px 0; font-size: 11px; }
+  .property-results-map__actions { border-radius: 18px; background: #285bc7; color: white; text-align: center; padding: 6px; }
+</style>
+<body>
+  <div id="search-results-map-canvas" aria-label="Property search results map">
+    <div class="gm-style">
+      <div role="dialog" tabindex="-1" class="gm-style-iw gm-style-iw-c" aria-labelledby="map-preview-address">
+        <div class="gm-style-iw-chr">
+          <div class="gm-style-iw-ch" id="map-preview-address"><div class="property-results-map__header-address">12 Example Road, BRIGHTON QLD 4017</div></div>
+          <button type="button" aria-label="Close">×</button>
+        </div>
+        <div class="gm-style-iw-d">
+          <div>
+            <a class="property-results-map__info-window property-results-map__info-window--clickable" href="/property/123456" aria-label="View property for 12 Example Road, BRIGHTON QLD 4017" tabindex="0">
+              <div class="property-results-map__media" aria-label="Property image placeholder">Property image</div>
+              <div class="property-results-map__content">
+                <div class="property-results-map__price">For Sale</div>
+                <div class="property-results-map__badges"><span class="property-results-map__badge">House</span><span class="property-results-map__badge">3 bed</span><span class="property-results-map__badge">1 bath</span><span class="property-results-map__badge">2 car</span></div>
+                <div class="property-results-map__actions"><span class="property-results-map__link">View property</span></div>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

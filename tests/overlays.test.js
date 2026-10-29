@@ -36,16 +36,20 @@ test('all 64 combinations of mapped types use the combined count, including a si
   assert.equal(result.title, count === 0 ? 'No overlays found' : `${count} overlay${count === 1 ? '' : 's'} found`);
  }
 });
-test('any unavailable check overrides the combined colour without hiding known overlays', () => {
- for (let index = 0; index < 6; index++) {
-  for (const status of ['absent', 'mapped']) {
-   const rows = Array.from({length:6}, () => ({status}));
-   rows[index] = {status:'unknown'};
-   const result = summarizeListing(rows.slice(0,4),rows.slice(4));
-   assert.equal(result.light,'unknown');
-   assert.equal(result.incomplete,true);
+test('all 729 combinations retain confirmed colours while incomplete empty results stay grey', () => {
+ for (let scenario = 0; scenario < 3 ** 6; scenario++) {
+  const rows = Array.from({length:6}, (_, index) => ({status:['absent','mapped','unknown'][Math.floor(scenario / 3 ** index) % 3]}));
+  const count = rows.filter(row => row.status === 'mapped').length;
+  const incomplete = rows.some(row => row.status === 'unknown');
+  const result = summarizeListing(rows.slice(0,4),rows.slice(4));
+  assert.equal(result.light,count >= 2 ? 'red' : count === 1 ? 'yellow' : incomplete ? 'unknown' : 'green', `scenario ${scenario}`);
+  assert.equal(result.overlayCount,count);
+  assert.equal(result.incomplete,incomplete);
+  if (incomplete) {
    assert.equal(result.title,'Overlay check incomplete');
-   assert.equal(result.overlayCount,status === 'mapped' ? 5 : 0);
+   assert.match(result.reason,/Some checks unavailable/);
+   if (count) assert.match(result.reason,new RegExp(`^At least ${count} overlay`));
+   else assert.equal(result.reason,'Some checks unavailable');
   }
  }
  assert.equal(summarizeListing().light,'unknown');
@@ -63,11 +67,26 @@ test('listing response includes both planning types and propagates their failure
    if(url.includes('Landslide')) return response([feature('Landslide susceptibility area')]);
    return response([]);
   });
-  assert.equal(data.light,failBushfire?'unknown':'red');
+  assert.equal(data.light,failBushfire?'yellow':'red');
   assert.equal(data.incomplete,failBushfire);
   assert.equal(data.overlayCount,failBushfire?1:2);
   assert.equal(data.overlays[1].status,'mapped');
  }
+});
+test('a Medium river overlay stays yellow when overland flow is unavailable', async () => {
+ const data = await checkListing(123,async url => {
+  if(url.includes('property_boundaries')) return response([{geometry}]);
+  if(url.includes('Flood_Awareness_River')) return response([{attributes:{FLOOD_RISK:'Medium'}}]);
+  if(url.includes('Flood_Awareness_Overland_Flow')) throw new Error('Service unavailable');
+  return response([]);
+ });
+ assert.equal(data.light,'yellow');
+ assert.equal(data.incomplete,true);
+ assert.equal(data.overlayCount,1);
+ assert.equal(data.title,'Overlay check incomplete');
+ assert.equal(data.reason,'At least 1 overlay found · Some checks unavailable');
+ assert.equal(data.rows.find(row=>row.name==='River').level,'Medium');
+ assert.equal(data.rows.find(row=>row.name==='Overland flow').status,'unknown');
 });
 test('failed additional layer remains unknown while successful results survive',async()=>{
  const rows=await overlaysForGeometry(geometry,async url=>{

@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>OnTheHouse map preview fixture</title>
+<!-- Sanitized from a clicked OnTheHouse map pin on 29 October 2026.
+     The live preview is a body portal, outside the Google Map container.
+     Keep observed component names and nesting; all listing data is fictional. -->
+<style>
+  body { margin: 0; font: 14px/1.4 system-ui, sans-serif; color: #30373a; }
+  #mapContainer { height: 680px; background: #e3ebdf; }
+  .SearchResultsMap__popOverSmall--dLcub { position: absolute; top: 50px; left: 80px; }
+  [class*="PropertyCardSearch__map--"] { width: 300px; border: 1px solid #ddd; background: white; border-radius: 8px; overflow: hidden; box-shadow: 0 3px 14px #0003; }
+  [class*="PropertyCardSearch__cardImageBlock--"] { height: 180px; display: grid; place-items: center; background: #bfd1d4; }
+  [class*="PropertyCardSearch__propertyCardBody--"] { padding: 12px; }
+  [class*="PropertyCardSearch__propertyCardAddressText--"] { font-size: 14px; margin: 0; font-weight: 400; }
+  a { color: inherit; text-decoration: none; }
+</style>
+<body>
+  <div id="root"><div id="mapContainer"><div class="gm-style" role="region" aria-label="Map"></div></div></div>
+  <div>
+    <div class="SearchResultsMap__popOverSmall--dLcub show">
+      <div class="popover show bs-popover-auto">
+        <div class="popover-inner" role="tooltip">
+          <div class="card PropertyCardSearch__map--SGzl9 PropertyCardSearch__propertyCard--FqRCV">
+            <div class="PropertyCardSearch__cardImageBlock--P9c9C">
+              <a href="https://www.onthehouse.com.au/property-for-sale/qld/paddington-4064/12-example-st-paddington-qld-4064-12345678">Property image placeholder</a>
+            </div>
+            <a href="https://www.onthehouse.com.au/property-for-sale/qld/paddington-4064/12-example-st-paddington-qld-4064-12345678">
+              <div class="flex-grow-1 d-flex flex-column justify-content-between PropertyCardSearch__propertyCardBody--Doa+P">
+                <div class="flex-grow-1 d-flex flex-column">
+                  <div class="PropertyCardSearch__propertyCategory--WKF29">FOR SALE</div>
+                  <div class="text-truncate PropertyCardSearch__propertyCardPrice--EhKc+">For Sale</div>
+                  <div class="text-capitalize PropertyCardSearch__propertyCardText--uJUQj">
+                    <div class="text-truncate"><h2 class="PropertyCardSearch__propertyCardAddressText--Cav7-">12 Example St, </h2></div>
+                    <div class="text-truncate"><h2 class="PropertyCardSearch__propertyCardAddressText--Cav7-">Paddington, QLD 4064</h2></div>
+                  </div>
+                  <div class="d-flex justify-content-between"><p>3 beds · 2 baths · 1 car</p></div>
+                </div>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

@@ -9,19 +9,20 @@ export const ADDITIONAL_OVERLAYS = [
   { name: 'Landslide', service: 'Landslide_overlay' }
 ];
 
-// Count each queried type once. The colour describes coverage, not hazard severity.
+// Count confirmed types once. Missing checks can add to the count, but cannot
+// erase a known overlay. Green still requires every check to succeed.
 export function summarizeListing(floodRows = [], overlays = []) {
   const rows = [...floodRows, ...overlays];
   const incomplete = floodRows.length !== AWARENESS.length || overlays.length !== ADDITIONAL_OVERLAYS.length ||
     rows.some(row => !['mapped', 'absent'].includes(row?.status));
   const overlayCount = rows.filter(row => row?.status === 'mapped').length;
   const countLabel = overlayCount === 1 ? '1 overlay found' : `${overlayCount} overlays found`;
-  const light = incomplete ? 'unknown' : overlayCount === 0 ? 'green' : overlayCount === 1 ? 'yellow' : 'red';
+  const light = overlayCount >= 2 ? 'red' : overlayCount === 1 ? 'yellow' : incomplete ? 'unknown' : 'green';
   return {
     overlayCount, incomplete, light,
     title: incomplete ? 'Overlay check incomplete' : overlayCount ? countLabel : 'No overlays found',
-    reason: incomplete ? `${countLabel} · Some checks unavailable` : overlayCount ? countLabel : 'No overlays found',
-    tone: incomplete ? 'unknown' : overlayCount ? 'mapped' : 'clear'
+    reason: incomplete ? overlayCount ? `At least ${countLabel} · Some checks unavailable` : 'Some checks unavailable' : overlayCount ? countLabel : 'No overlays found',
+    tone: overlayCount ? 'mapped' : incomplete ? 'unknown' : 'clear'
   };
 }
 

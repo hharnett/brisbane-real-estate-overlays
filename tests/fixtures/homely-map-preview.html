@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<meta charset="utf-8">
+<title>Sanitized Homely map preview fixture</title>
+<style>
+  body { margin: 24px; font-family: system-ui, sans-serif; }
+  [aria-label="Search map"] { position: relative; width: 600px; padding: 24px; background: #e9edf0; }
+  article { position: relative; width: 520px; min-height: 132px; background: white; border-radius: 12px; margin: 16px 0; }
+  article a { display: block; padding: 20px; color: #30373c; text-decoration: none; }
+  .mobile-preview, [aria-hidden="true"] { display: none; }
+</style>
+<!-- Homely uses the same article label for the results list. It must stay unannotated. -->
+<div aria-label="Listing cards list">
+  <article aria-label="Property Listing" data-listing-id="10000001">
+    <a href="/homes/99-another-street-brighton-qld-4017/10000001" aria-label="99 Another Street, Brighton QLD 4017">
+      <h2>99 Another Street, <span>Brighton QLD 4017</span></h2>
+    </a>
+  </article>
+</div>
+<!-- Semantic attributes and relative listing URL shape observed on 29 October 2026.
+     Addresses, IDs, prices and images replaced or removed. No downloaded scripts. -->
+<div role="presentation" aria-label="Search map">
+  <div class="absolute top-0 left-0 size-full pointer-events-none">
+    <div class="hidden md:block">
+      <div class="absolute transform-gpu left-0 right-0 md:bottom-[92px] mx-auto max-w-[530px] max-h-[420px] overflow-hidden pointer-events-auto shadow-card1 md:rounded-[12px]">
+        <article class="relative w-full bg-whiteBase select-none touch-callout-none shadow-none md:shadow-none rounded-[12px] md:rounded-[12px] border-grayLight2 border md:border" aria-label="Property Listing" data-listing-id="10000002">
+          <a class="flex md:flex size-full text-grayBase select-none drag-none" href="/homes/3-12-example-road-brighton-qld-4017/10000002" aria-label="3/12 Example Road, Brighton QLD 4017">
+            <h3>For sale</h3>
+            <h2>3/12 Example Road, Brighton QLD 4017<span class="inline md:inline"></span></h2>
+          </a>
+          <button aria-label="Add to collection" type="button">♡</button>
+        </article>
+      </div>
+    </div>
+    <div class="mobile-preview">
+      <div data-index-number="0" class="snap-center first:ml-[16px]" aria-hidden="true">
+        <article aria-label="Property Listing" data-listing-id="10000001">
+          <a href="/homes/99-another-street-brighton-qld-4017/10000001" aria-label="99 Another Street, Brighton QLD 4017">99 Another Street, Brighton QLD 4017</a>
+        </article>
+      </div>
+      <div data-index-number="1" class="snap-center first:ml-[16px]">
+        <article aria-label="Property Listing" data-listing-id="10000002">
+          <a href="/homes/3-12-example-road-brighton-qld-4017/10000002" aria-label="3/12 Example Road, Brighton QLD 4017">3/12 Example Road, Brighton QLD 4017</a>
+        </article>
+      </div>
+    </div>
+  </div>
+</div>
+</html>

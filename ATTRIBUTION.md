@@ -25,7 +25,7 @@ Copyright years below reproduce the source layer notices; they are not the data�
 
 The extension normalises addresses, matches a Council property holding, and requests intersections between its full boundary and Council flood, bushfire and landslide polygons. It summarises the returned categories, selects the highest mapped category per flood source and applies its own traffic-light rule across all six checked types: river, creek, storm tide, overland flow, bushfire and landslide. Bushfire and landslide categories are shown as published, including buffer descriptions. These are derived summaries, not official Council property reports. Source geometry is queried as published, with ArcGIS returning property geometry in EPSG:28356 for the intersection requests. No bulk dataset is bundled or persistently stored.
 
-The traffic-light rule is an extension feature: green means no mapped types after all six successful checks; yellow means exactly one mapped type; red means two or more mapped types; grey means any check is incomplete. Each type counts once regardless of polygons or subcategories. Colours indicate counts, not hazard severity or a Council risk classification. A single High category is yellow and retains its published category in the details. Multiple types do not change the Council likelihood category. No overlays found does not mean a property is safe or free from hazards.
+The traffic-light rule is an extension feature: green means no mapped types after all six successful checks; yellow means one confirmed mapped type; red means two or more confirmed mapped types; grey means no types are confirmed and checks are incomplete. An unavailable check does not erase confirmed overlays: yellow or red remains, with an incomplete warning and a minimum confirmed count. Each type counts once regardless of polygons or subcategories. Colours indicate confirmed counts, not hazard severity or a Council risk classification. A single High category is yellow and retains its published category in the details. Multiple types do not change the Council likelihood category. No overlays found does not mean a property is safe or free from hazards.
 
 ## Source limitations
 
@@ -43,4 +43,4 @@ This independent extension is not affiliated with or endorsed by Brisbane City C
 
 ## Redistributing data or derived results
 
-Retain the relevant copyright, licence and disclaimer notices, link to the sources and CC BY 4.0, and identify modifications or derived processing. Do not imply endorsement or apply restrictions to the licensed data that conflict with CC BY 4.0. The code’s MIT licence is separate. Check the source’s current notices when updating or adding datasets.
+Retain the relevant copyright, licence and disclaimer notices, link to the sources and CC BY 4.0, and identify modifications or derived processing. Do not imply endorsement or apply restrictions to the licensed data that conflict with CC BY 4.0. The code’s MIT licence is separate.
