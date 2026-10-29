@@ -1,0 +1,3 @@
+Edited using the built-in image generation tool.
+
+Use case: text-localization. Edit target: attached screenshot of the Property overlays browser extension. Replace only the address line beneath "1 overlay found" with the exact text "Example property — address hidden". Completely remove every character of the original street address, suburb and postcode. Match the original line’s font, size, muted blue colour and left alignment. Keep everything else unchanged: all remaining wording, yellow indicator, layout, dimensions, light blue background, rounded card, icons and shadow. This is a faithful README screenshot edit, not a redesign. Opaque background as in the original.
